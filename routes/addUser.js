@@ -12,9 +12,7 @@ router.post('/add', async (req,res) => {
     try {
         let saveStatus = await createUser(data);
         if(saveStatus) {
-            res.status(200).json({
-                message: "added successfully"
-            });
+            res.redirect('/');
         }
     } catch(error) {
         res.status(500).json({

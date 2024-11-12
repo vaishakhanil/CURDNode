@@ -2,23 +2,49 @@ doctype html
 html
     head 
         title= title
+        link(rel='stylesheet', type='text/css', href='https://www.w3schools.com/w3css/4/w3.css')
+        link(rel='stylesheet', type='text/css', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
     body
-        h1= message
-        p= count
-        each value in users
-            p !{value.firstName}
-            input(type="button", value="Edit", onclick=`window.location.href='/update?id=${value._id}'`)
-        ul
-        if current > 1
-            li
-            a(href=`?page=${parseInt(current) - 1}`) Previous
-        - var i = 1
-        while i <= pages
-            li
-            if current == i
-                p= i++
-            else
-                a(href=`?page=${i}`)= i++
-        if current < pages
-            li
-            a(href=`?page=${parseInt(current) + 1}`) Next
+        div(class="w3-bar w3-light-grey")
+            each menu in navigation
+                a(href=menu.url class="w3-bar-item w3-button")= menu.name
+
+        .w3-container
+            p(class="w3-center w3-large w3-padding-16")= message
+
+        table(class="w3-table-all w3-card-4 w3-hoverable")
+            tr(class="w3-grey")
+                each header in formFields
+                    th= header.content
+                th= "Action"
+
+            each value in users
+                tr
+                    td !{value.firstName}
+                    td !{value.lastName}
+                    - formattedDOB = value.dob.toISOString().substr(0, 10); 
+                    td !{formattedDOB}
+                    td !{value.address1}
+                    td !{value.address2}
+                    td !{value.city}
+                    td !{value.postalCode}
+                    td !{value.country}
+                    td !{value.phoneNumber}
+                    td !{value.email}
+                    td !{value.userNotes}
+                    td
+                        button(type="button", class="w3-button w3-yellow w3-hover-green", onclick=`window.location.href='/update?id=${value._id}'`)
+                            i(class="fa fa-pencil")  Edit
+
+        .w3-center
+            .w3-bar
+                if current > 1
+                    a(href=`?page=${parseInt(current) - 1}`).w3-button &laquo;
+                - var i = 1
+                while i <= pages
+                    if current == i
+                        p(class="w3-button w3-green")= i++
+                    else
+                        a(href=`?page=${i}`).w3-button= i++
+                if current < pages
+                    a(href=`?page=${parseInt(current) + 1}`).w3-button &raquo;

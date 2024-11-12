@@ -7,15 +7,12 @@ const deleteUser = (id) => {
     })
         .then(response => {
             if (response.ok) {
-                alert('User deleted successfully');
-                sessionStorage.removeItem('id')
-                // window.location.reload(); // Reload page after delete
+                location.replace('/'); // Reload page after delete
             } else {
                 alert('Error deleting user');
             }
         })
         .catch(err => {
             alert('Error deleting user');
-            console.error(err);
         });
 }

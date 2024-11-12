@@ -1,6 +1,6 @@
 const displayUserPageContent = {
     title: "View User",
-    message: "This page is to View user"
+    message: "Users fetched from the database",
 }
 
 module.exports = displayUserPageContent;

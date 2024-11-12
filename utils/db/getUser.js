@@ -16,7 +16,7 @@ const findUserByID = async (id) => {
         const user = await User.findById(id);
         return user
     } catch(error) {
-        return error
+        throw error
     }
 }
 

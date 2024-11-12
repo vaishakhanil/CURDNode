@@ -3,13 +3,19 @@ html
     head 
         title= title
         script(src='/js/index.js')
+        link(rel='stylesheet', type='text/css', href='https://www.w3schools.com/w3css/4/w3.css')
+        link(rel='stylesheet', type='text/css', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
     body
+        div(class="w3-bar w3-light-grey")
+            each menu in navigation
+                a(href=menu.url class="w3-bar-item w3-button")= menu.name
+
         h1= message
         .form__container--error
         .form__container
-            form(action="add", method="post")
+            form(action="add", method="post", class="w3-container w3-card-4 w3-light-grey w3-padding-32")
                 each value in formFields
                     .form__input--container
                         label(for=value.name) !{value.content}
-                        input(type=value.type name=value.name id=value.name required=value.required)
-                input(type="submit", value="Submit")
+                        input(class="w3-input w3-border" type=value.type name=value.name id=value.name required=value.required)
+                input(class="w3-button w3-round-large w3-large w3-blue w3-margin" type="submit", value="Submit")
