@@ -1,0 +1,15 @@
+doctype html
+html
+    head 
+        title= title
+        script(src='/js/index.js')
+    body
+        h1= message
+        .form__container--error
+        .form__container
+            form(action="add", method="post")
+                each value in formFields
+                    .form__input--container
+                        label(for=value.name) !{value.content}
+                        input(type=value.type name=value.name id=value.name required=value.required)
+                input(type="submit", value="Submit")

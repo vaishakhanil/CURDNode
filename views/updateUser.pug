@@ -1,0 +1,21 @@
+doctype html
+html
+    head 
+        title= title
+        script(src="/js/index.js")
+    body
+        h1= message
+        .form__container--error
+        .form__container
+            form(action=`update?id=${id}`, method="post")
+                each value in formFields
+                    .form__input--container
+                        label(for=value.name) !{value.content}
+                        if value.type == "date"
+                            - let formattedDate = user[value.name].toISOString().substr(0, 10);
+                            input(type=value.type name=value.name id=value.name required=value.required value=formattedDate)
+                        else
+                            input(type=value.type name=value.name id=value.name required=value.required value=user[value.name])
+                input(type="submit" value="Submit")
+
+            input(type="button" value="Delete" onclick=`deleteUser(${JSON.stringify(id)})`)
