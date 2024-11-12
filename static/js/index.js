@@ -1,3 +1,4 @@
+// Handling on click event when user clicks delete user
 const deleteUser = (id) => {
     fetch(`/delete?id=${id}`, {
         method: 'DELETE',
@@ -7,8 +8,10 @@ const deleteUser = (id) => {
     })
         .then(response => {
             if (response.ok) {
-                location.replace('/'); // Reload page after delete
+                // Redirect to index page to display the user table
+                location.replace('/');
             } else {
+                // Display Error message
                 alert('Error deleting user');
             }
         })

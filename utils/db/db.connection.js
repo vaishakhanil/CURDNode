@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// MongoDB Connection String
 const CONNECTION_URL = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@assignment.zhl1o.mongodb.net/?retryWrites=true&w=majority&appName=assignment`;
 
 // MongoDB server API versions, from mongodb atlas documentation
@@ -17,6 +18,7 @@ const clientOptions = {
 const connectDB = async () => {
     try {
         await mongoose.connect(CONNECTION_URL, clientOptions);
+        // Testing Connection - As per Mongodb documentation
         await mongoose.connection.db.admin().command({ping: 1});
         console.log("Pinged!");
     } catch(error) {
